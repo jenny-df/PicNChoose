@@ -4,6 +4,7 @@
 	<title>Homepage</title>
 
   <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <meta http-equiv="imagetoolbar" content="no" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -12,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body oncontextmenu="return false;">
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
@@ -27,6 +28,7 @@
       <ul class="nav navbar-nav navbar-left">
         <li><a href="{{url_for('home_page')}}">HOME</a></li>
         <li><a href="{{url_for('all_charities')}}">CHARITIES</a></li>
+        <li><a href="{{url_for('about')}}">ABOUT US</a></li>
       </ul>
     </div>
     <div id="myNavbar">
@@ -63,8 +65,8 @@
       </div>
     </div>
     <br>
-    <input type="radio" name="search_type" value="users"> Users
-    <input type="radio" name="search_type" value="images"> Images
+    <input type="radio" name="search_type" value="users" required> Users
+    <input type="radio" name="search_type" value="images" required> Images
   </form>
 </div>
 <br>

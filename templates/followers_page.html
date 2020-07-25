@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ user.username }}'s followers</title>
+	<link rel="stylesheet" type="text/css" href="/static/charity.css">
+    <meta http-equiv="imagetoolbar" content="no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+
+    </div>
+    <div id="myNavbar">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="{{url_for('home_page')}}">HOME</a></li>
+        <li><a href="{{url_for('all_charities')}}">CHARITIES</a></li>
+        <li><a href="{{url_for('about')}}">ABOUT US</a></li>
+      </ul>
+    </div>
+    <div id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ session["username"]}}
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('profile', username =session['username']) }}">Profile</a></li>
+            <li><a href="{{ url_for('upload_file') }}">Upload an Image</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li> 
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<h1 class="center_me" style="font-size: 50px;">{{ user.username }}'s followers</h1>
+<br><br><br>
+{% for i in range (followers|length) %}
+<div class="centering">
+<img src="/static/profile_pic/{{ followers[i].profile_pic }}" width="150" height="150" class="img-circle">
+<div class="right_side">
+<a href="{{ url_for('profile', username=followers[i].username) }}">{{ followers[i].username }}</a>
+{% if has_photos[i]==True %}
+
+<p>Number of photos for sale by this user: {{ number_of_photos[i] }}</p>
+<p>Price range: ${{ least_p[i] }} - ${{ most_p[i] }}</p>
+
+{% endif %}
+{% if has_photos[i]==False %}
+
+<p>This user has no images for sale!</p>
+
+{% endif %}
+</div>
+<br>
+</div>
+{% endfor %}
+
+</body>
+</html>
