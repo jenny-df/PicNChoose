@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Local OS metadata and Python bytecode
+.DS_Store
+*.pyc
